@@ -15,15 +15,22 @@ namespace TranzactChallenge.Controllers
         [HttpPost]
         public async Task<ActionResult<ResponseEntity>> GetPremium(RequestEntity requestEntity)
         {
-            var list = await GetParameters();
+            try
+            {
+                var list = await GetParameters();
 
-            int month = Convert.ToDateTime(requestEntity.DateOfBirth).Month;
+                int month = Convert.ToDateTime(requestEntity.DateOfBirth).Month;
 
-            ParameterEntity result = list.Find(x => (x.State == requestEntity.State || x.State == "*") &&
-                                                    (x.MontOfBirth == month || x.MontOfBirth == -1) &&
-                                                    (x.AgeFrom <= requestEntity.Age && x.AgeTo >= requestEntity.Age));
-            ResponseEntity res = new ResponseEntity() { Premium = result.Premium };
-            return res;
+                ParameterEntity result = list.Find(x => (x.State == requestEntity.State || x.State == "*") &&
+                                                        (x.MontOfBirth == month || x.MontOfBirth == -1) &&
+                                                        (x.AgeFrom <= requestEntity.Age && x.AgeTo >= requestEntity.Age));
+                ResponseEntity res = new ResponseEntity() { Premium = result.Premium };
+                return res;
+            }
+            catch(Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         private async Task<List<ParameterEntity>> GetParameters()
@@ -37,7 +44,7 @@ namespace TranzactChallenge.Controllers
                 new ParameterEntity(){State = "AL", MontOfBirth = -1, AgeFrom = 18, AgeTo = 65, Premium = 100},
                 new ParameterEntity(){State = "AK", MontOfBirth = 12, AgeFrom = 65, AgeTo = 200, Premium = 175.20},
                 new ParameterEntity(){State = "AK", MontOfBirth = 12, AgeFrom = 18, AgeTo = 64, Premium = 125.16},
-                new ParameterEntity(){State = "AK", MontOfBirth = 0, AgeFrom = 18, AgeTo = 65, Premium = 100.80},
+                new ParameterEntity(){State = "AK", MontOfBirth = -1, AgeFrom = 18, AgeTo = 65, Premium = 100.80},
                 new ParameterEntity(){State = "*", MontOfBirth = -1, AgeFrom = 18, AgeTo = 65, Premium = 90},
             };
             // In MonthOfBirth, -1 means *
