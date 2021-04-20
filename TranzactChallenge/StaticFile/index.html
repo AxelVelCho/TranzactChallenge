@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scripts/requests.js" type="text/javascript"></script>
+    <script src="scripts/validation.js" type="text/javascript"></script>
+    <script src="scripts/main.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Systems Configuration Challenge</h1>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Date of Birth</label>
+            </div>
+            <div class="col-md-6">
+                <input type="date" id="txtDateBirth" onchange="changeDate();" class="form-control requestParameter" parameterName="dateOfBirth" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>State</label>
+            </div>
+            <div class="col-md-6">
+                <select id="ddlState" class="form-control requestParameter" parameterName="state">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Age</label>
+            </div>
+            <div class="col-md-6">
+                <input type="number" id="txtAge" disabled="disabled" min="18" max="120" class="form-control requestParameter" parameterName="age" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" id="btnGetValue" disabled="disabled" value="Get Value" onclick="getPremium();" />
+            </div>
+            <div class="col-md-3">
+                <input type="number" id="txtValue" disabled="disabled" class="form-control"/>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" id="ddlFrequencies" onchange="calculate();" disabled="disabled">
+                    <option value="12">Month</option>
+                    <option value="4">Quarter</option>
+                    <option value="2">Semi-Anual</option>
+                    <option value="1">Anual</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label>Annual</label>
+            </div>
+            <div class="col-md-2">
+                <input type="number" id="txtAnnual" disabled="disabled" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-2">
+                <label>Monthly</label>
+            </div>
+            <div class="col-md-2">
+                <input type="number" id="txtMonthly" disabled="disabled" class="form-control"/>
+            </div>
+        </div>
+
+</body>
+</html>
